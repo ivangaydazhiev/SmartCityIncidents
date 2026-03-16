@@ -3,15 +3,20 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.9.34723.18
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SmartCity.Api", "SmartCity.Api\SmartCity.Api.csproj", "{5E90DB01-C0C5-4E91-BD94-F0D6DC7C86B3}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SmartCity.Api", "SmartCity.Api\SmartCity.Api.csproj", "{5E90DB01-C0C5-4E91-BD94-F0D6DC7C86B3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SmartCity.Domain", "SmartCity.Domain\SmartCity.Domain.csproj", "{3533F9C8-1C61-48B0-B4DB-49ADEC62D0D9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SmartCity.Domain", "SmartCity.Domain\SmartCity.Domain.csproj", "{3533F9C8-1C61-48B0-B4DB-49ADEC62D0D9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SmartCity.Application", "SmartCity.Application\SmartCity.Application.csproj", "{D47F2E2F-733B-45DA-BC34-6D258CD1B0A2}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SmartCity.Application", "SmartCity.Application\SmartCity.Application.csproj", "{D47F2E2F-733B-45DA-BC34-6D258CD1B0A2}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SmartCity.Infrastructure", "SmartCity.Infrastructure\SmartCity.Infrastructure.csproj", "{0D23C102-7333-482B-95FE-59DC06FBCD2D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SmartCity.Infrastructure", "SmartCity.Infrastructure\SmartCity.Infrastructure.csproj", "{0D23C102-7333-482B-95FE-59DC06FBCD2D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SmartCity.Tests", "SmartCity.Tests\SmartCity.Tests.csproj", "{A99BA3DD-028F-4028-89F7-B429D65864D4}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SmartCity.Tests", "SmartCity.Tests\SmartCity.Tests.csproj", "{A99BA3DD-028F-4028-89F7-B429D65864D4}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{C524B981-D6F4-4E24-B5E5-AE225A71D45D}"
+	ProjectSection(SolutionItems) = preProject
+		README.md = README.md
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
