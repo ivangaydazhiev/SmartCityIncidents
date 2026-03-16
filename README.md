@@ -1,4 +1,4 @@
-# SmartCity Incident Management System
+# Smart City Incident Management System
 
 Backend система за управление на градски инциденти.
 
