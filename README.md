@@ -1,6 +1,6 @@
 # Smart City Incident Management System
 
-Backend система за управление на градски инциденти.
+Backend system for managing city incidents.
 
 ## Technologies
 
