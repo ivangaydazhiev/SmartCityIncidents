@@ -11,4 +11,9 @@
     <ProjectReference Include="..\SmartCity.Domain\SmartCity.Domain.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Repositories\" />
+    <Folder Include="Persistence\" />
+  </ItemGroup>
+
 </Project>
