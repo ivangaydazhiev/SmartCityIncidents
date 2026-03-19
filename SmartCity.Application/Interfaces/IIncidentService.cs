@@ -8,5 +8,6 @@ namespace SmartCity.Application.Interfaces
         Task<IncidentResponseDto?> GetByIdAsync (Guid id);
         Task<IncidentResponseDto> CreateAsync(CreateIncidentDto dto);
         Task DeleteAsync(Guid id);
+        Task<IncidentResponseDto> UpdateAsync(Guid id, UpdateIncidentDto dto);
     }
 }

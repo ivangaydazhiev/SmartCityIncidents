@@ -10,14 +10,17 @@ namespace SmartCity.Api.Controllers
     public class IncidentsController : ControllerBase
     {
         private readonly IIncidentService _service;
-        private readonly IValidator<CreateIncidentDto> _validator;  
+        private readonly IValidator<CreateIncidentDto> _validator;
+        private readonly IValidator<UpdateIncidentDto> _updateValidator;
 
         public IncidentsController(
             IIncidentService service,
-            IValidator<CreateIncidentDto> validator)
+            IValidator<CreateIncidentDto> validator,
+            IValidator<UpdateIncidentDto> updateValidator)
         {
             _service = service;
             _validator = validator;
+            _updateValidator = updateValidator;
         }
 
         [HttpGet("{id}")]
@@ -50,6 +53,19 @@ namespace SmartCity.Api.Controllers
         {
             await _service.DeleteAsync(id);
             return NoContent();
+        }
+
+        [HttpPut("{id}")]
+        public async Task<IActionResult> Update(Guid id, [FromBody]UpdateIncidentDto dto)
+        {
+            var validationResult = await _updateValidator.ValidateAsync(dto);
+
+            if (!validationResult.IsValid)
+                return BadRequest(validationResult.Errors);
+
+            var updated = await _service.UpdateAsync(id, dto);
+
+            return Ok(updated);
         }
     }
 }

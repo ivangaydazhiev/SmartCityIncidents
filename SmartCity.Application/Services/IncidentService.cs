@@ -63,5 +63,26 @@ namespace SmartCity.Application.Services
             _repository.Delete(incident);
             await _repository.SaveChangesAsync();
         }
+
+        public async Task<IncidentResponseDto> UpdateAsync(Guid id, UpdateIncidentDto dto)
+        {
+            var incident = await _repository.GetByIdAsync(id);
+
+            if (incident is null)
+                throw new KeyNotFoundException("Incident not found");
+
+            incident.Title = dto.Title;
+            incident.Description = dto.Description;
+            incident.Type = (IncidentType) dto.Type;
+            incident.Status = (IncidentStatus) dto.Status;
+            incident.LocationId = dto.LocationId;
+
+            _repository.Update(incident);
+            await _repository.SaveChangesAsync();
+
+            var update = await _repository.GetByIdAsync(id);
+
+            return update!.ToDto();
+        }
     }
 }
