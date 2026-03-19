@@ -1,5 +1,6 @@
 ﻿using SmartCity.Application.DTOs;
 using SmartCity.Application.Interfaces;
+using SmartCity.Application.Mappings;
 using SmartCity.Domain.Entities;
 using SmartCity.Domain.Enums;
 
@@ -14,16 +15,18 @@ namespace SmartCity.Application.Services
            _repository = repository;
         }
 
-        public async Task<IEnumerable<Incident>> GetAllAsync()
+        public async Task<IEnumerable<IncidentResponseDto>> GetAllAsync()
         {
-            return await _repository.GetAllAsync();
+            var incidents = await _repository.GetAllAsync();
+            return incidents.Select(i => i.ToDto()).ToList();
         }
 
-        public async Task<Incident?> GetByIdAsync(Guid id)
+        public async Task<IncidentResponseDto?> GetByIdAsync(Guid id)
         {
-            return await _repository.GetByIdAsync(id);
+            var incident = await _repository.GetByIdAsync(id);
+            return incident?.ToDto();
         }
-        public async Task<Incident> CreateAsync(CreateIncidentDto dto)
+        public async Task<IncidentResponseDto> CreateAsync(CreateIncidentDto dto)
         {
             if (string.IsNullOrWhiteSpace(dto.Title))
                 throw new ArgumentException("Title is required");
@@ -42,7 +45,14 @@ namespace SmartCity.Application.Services
             await _repository.AddAsync(incident);
             await _repository.SaveChangesAsync();
 
-            return incident;
+            var created = await _repository.GetByIdAsync(incident.Id);
+
+            if (created is null)
+                throw new Exception("Failed to load created incident");
+            
+            return created.ToDto();
+
+            
         }
 
         public async Task DeleteAsync(Guid id)
@@ -50,7 +60,7 @@ namespace SmartCity.Application.Services
             var incident = await _repository.GetByIdAsync(id);
 
             if (incident is null)
-                throw new Exception("Incident not found");
+                throw new KeyNotFoundException("Incident not found");
 
             _repository.Delete(incident);
             await _repository.SaveChangesAsync();
