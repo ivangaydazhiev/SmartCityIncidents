@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using FluentValidation;
+using Microsoft.AspNetCore.Mvc;
 using SmartCity.Application.DTOs;
 using SmartCity.Application.Interfaces;
 
@@ -9,10 +10,14 @@ namespace SmartCity.Api.Controllers
     public class IncidentsController : ControllerBase
     {
         private readonly IIncidentService _service;
+        private readonly IValidator<CreateIncidentDto> _validator;  
 
-        public IncidentsController(IIncidentService service)
+        public IncidentsController(
+            IIncidentService service,
+            IValidator<CreateIncidentDto> validator)
         {
             _service = service;
+            _validator = validator;
         }
 
         [HttpGet("{id}")]
@@ -29,6 +34,13 @@ namespace SmartCity.Api.Controllers
         [HttpPost]
         public async Task<IActionResult> Create([FromBody]CreateIncidentDto dto)
         {
+            var validationResult = await _validator.ValidateAsync(dto);
+
+            if (!validationResult.IsValid)
+            {
+                return BadRequest(validationResult.Errors);
+            }
+
             var incident = await _service.CreateAsync(dto);
             return Ok(incident);    
         }

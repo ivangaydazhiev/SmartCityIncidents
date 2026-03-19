@@ -28,9 +28,7 @@ namespace SmartCity.Application.Services
         }
         public async Task<IncidentResponseDto> CreateAsync(CreateIncidentDto dto)
         {
-            if (string.IsNullOrWhiteSpace(dto.Title))
-                throw new ArgumentException("Title is required");
-
+           
             var incident = new Incident
             {
                 Id = Guid.NewGuid(),

@@ -1,6 +1,8 @@
 using Microsoft.EntityFrameworkCore;
+using FluentValidation;
 using SmartCity.Application.Interfaces;
 using SmartCity.Application.Services;
+using SmartCity.Application.Validators;
 using SmartCity.Infrastructure.Persistence;
 using SmartCity.Infrastructure.Repositories;
 
@@ -15,6 +17,7 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddScoped<IIncidentRepository, IncidentRepository>();
 builder.Services.AddScoped<IIncidentService, IncidentService>();
+builder.Services.AddValidatorsFromAssemblyContaining<CreateIncidentDtoValidator>();
 builder.Services.AddDbContext<SmartCityDbContext>(options =>
     options.UseSqlite("Data source=smartcity.db"));
 
