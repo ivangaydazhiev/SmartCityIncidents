@@ -1,5 +1,4 @@
-﻿
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 using SmartCity.Domain.Entities;
 
 namespace SmartCity.Infrastructure.Persistence
@@ -23,8 +22,18 @@ namespace SmartCity.Infrastructure.Persistence
                 .HasOne(i => i.Location)
                 .WithMany()
                 .HasForeignKey(i => i.LocationId);
+
+            modelBuilder.Entity<Location>().HasData(
+                new Location
+                {
+                    Id = Guid.Parse("11111111-1111-1111-1111-111111111111"),
+                    City = "Sofia",
+                    Address = "Main Street 1",
+                    Latitude = 42.6977,
+                    Longitude = 23.3219
+
+                }
+            );
         }
-
-
     }
 }

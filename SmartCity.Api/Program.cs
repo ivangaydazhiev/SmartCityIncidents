@@ -1,6 +1,8 @@
 using Microsoft.EntityFrameworkCore;
 using SmartCity.Application.Interfaces;
+using SmartCity.Application.Services;
 using SmartCity.Infrastructure.Persistence;
+using SmartCity.Infrastructure.Repositories;
 
 
 var builder = WebApplication.CreateBuilder(args);
@@ -11,8 +13,8 @@ builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
-builder.Services.AddScoped<IIncidentRepository, IIncidentRepository>();
-builder.Services.AddScoped<IIncidentService, IIncidentService>();
+builder.Services.AddScoped<IIncidentRepository, IncidentRepository>();
+builder.Services.AddScoped<IIncidentService, IncidentService>();
 builder.Services.AddDbContext<SmartCityDbContext>(options =>
     options.UseSqlite("Data source=smartcity.db"));
 
