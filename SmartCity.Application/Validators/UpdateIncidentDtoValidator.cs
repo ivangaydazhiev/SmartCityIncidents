@@ -1,11 +1,12 @@
 ﻿using FluentValidation;
 using SmartCity.Application.DTOs;
+using SmartCity.Application.Interfaces;
 
 namespace SmartCity.Application.Validators
 {
     public class UpdateIncidentDtoValidator : AbstractValidator<UpdateIncidentDto>
     {
-        public UpdateIncidentDtoValidator(SmartCityDbContext context)
+        public UpdateIncidentDtoValidator(ILocationRepository locationRepository)
         {
             RuleFor(x => x.Title)
                 .NotEmpty()
@@ -21,8 +22,8 @@ namespace SmartCity.Application.Validators
                 .IsInEnum();
 
             RuleFor(x => x.LocationId)
-                .MustAsync(async (id, cancellation) =>
-                    await context.Locations.AnyAsync(l => l.id == id, cancellation))
+                .MustAsync(async (locationId, cancellation) =>
+                    await locationRepository.ExistAsync(locationId))
                 .WithMessage("Location does not exist");
 
         }

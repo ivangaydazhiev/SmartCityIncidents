@@ -17,6 +17,7 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddScoped<IIncidentRepository, IncidentRepository>();
 builder.Services.AddScoped<IIncidentService, IncidentService>();
+builder.Services.AddScoped<ILocationRepository, LocationRepository>();
 builder.Services.AddValidatorsFromAssemblyContaining<CreateIncidentDtoValidator>();
 builder.Services.AddDbContext<SmartCityDbContext>(options =>
     options.UseSqlite("Data source=smartcity.db"));

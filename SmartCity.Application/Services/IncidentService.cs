@@ -73,8 +73,8 @@ namespace SmartCity.Application.Services
 
             incident.Title = dto.Title;
             incident.Description = dto.Description;
-            incident.Type = (IncidentType) dto.Type;
-            incident.Status = (IncidentStatus) dto.Status;
+            incident.Type =  dto.Type;
+            incident.Status = dto.Status;
             incident.LocationId = dto.LocationId;
 
             _repository.Update(incident);
