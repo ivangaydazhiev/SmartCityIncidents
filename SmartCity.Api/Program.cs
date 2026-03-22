@@ -5,6 +5,8 @@ using SmartCity.Application.Services;
 using SmartCity.Application.Validators;
 using SmartCity.Infrastructure.Persistence;
 using SmartCity.Infrastructure.Repositories;
+using Microsoft.AspNetCore.Diagnostics;
+using SmartCity.Api.Middlewares;
 
 
 var builder = WebApplication.CreateBuilder(args);
@@ -30,6 +32,8 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 }
+
+app.UseMiddleware<ExceptionMiddleware>();
 
 app.UseHttpsRedirection();
 

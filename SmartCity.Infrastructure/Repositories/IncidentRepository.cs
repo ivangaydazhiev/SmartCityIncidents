@@ -48,5 +48,20 @@ namespace SmartCity.Infrastructure.Repositories
             await _context.SaveChangesAsync();
         }
 
+        public async Task<(IEnumerable<Incident> Items, int TotalCount)> GetPagedAsync(int page, int pageSize)
+        {
+            var query = _context.Incidents
+                .Include(i => i.Location)
+                .AsQueryable();
+
+            var totalCount = await query.CountAsync();
+
+            var items = await query
+                .Skip((page - 1) * pageSize)
+                .Take(pageSize)
+                .ToListAsync();
+
+            return (items, totalCount);
+        }
     }
 }

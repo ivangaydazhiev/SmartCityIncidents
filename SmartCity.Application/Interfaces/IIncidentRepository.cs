@@ -10,6 +10,7 @@ namespace SmartCity.Application.Interfaces
         void Update(Incident incident);
         void Delete(Incident incident);
         Task SaveChangesAsync();
+        Task<(IEnumerable<Incident> Items, int TotalCount)> GetPagedAsync(int page, int pageSize);
 
     }
 }

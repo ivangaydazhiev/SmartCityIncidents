@@ -67,5 +67,16 @@ namespace SmartCity.Api.Controllers
 
             return Ok(updated);
         }
+
+        [HttpGet]
+        public async Task<IActionResult> GetAll([FromQuery] int page = 1, [FromQuery] int pageSize = 10)
+        {
+
+            page = Math.Max(page, 1);
+            pageSize = Math.Min(pageSize, 50);
+
+            var result = await _service.GetPagedAsync(page, pageSize);
+            return Ok(result);
+        }
     }
 }
