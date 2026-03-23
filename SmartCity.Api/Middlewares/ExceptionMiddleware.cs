@@ -1,4 +1,5 @@
-﻿using System.Net;
+﻿using Serilog;
+using System.Net;
 using System.Text.Json;
 
 namespace SmartCity.Api.Middlewares
@@ -28,8 +29,10 @@ namespace SmartCity.Api.Middlewares
             }
             catch (Exception ex)
             {
+                Log.Error(ex, "Unhandled exception occured");
                 await HandleException(context, "Internal server error", HttpStatusCode.InternalServerError);
             }
+
         }
 
         private static async Task HandleException(HttpContext context, string message, HttpStatusCode statusCode)
