@@ -6,7 +6,7 @@ using SmartCity.Application.Interfaces;
 
 namespace SmartCity.Api.Controllers
 {
-    [Authorize]
+    [Authorize(Roles = "Admin")]
     [ApiController]
     [Route("/api[controller]")]
     public class IncidentsController : ControllerBase

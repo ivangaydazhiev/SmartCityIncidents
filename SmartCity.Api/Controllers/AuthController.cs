@@ -38,9 +38,18 @@ namespace SmartCity.Api.Controllers
 
             var creds = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);
 
+            string role;
+
+            if (username == "admin")
+                role = "Admin";
+            else
+                role = "User";
+
             var claims = new[]
             {
-                new Claim(ClaimTypes.Name, username)
+                new Claim(ClaimTypes.Name, username),
+
+                new Claim(ClaimTypes.Role, role)
             };
 
             var token = new JwtSecurityToken(
