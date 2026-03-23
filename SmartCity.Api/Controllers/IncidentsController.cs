@@ -69,13 +69,14 @@ namespace SmartCity.Api.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> GetAll([FromQuery] int page = 1, [FromQuery] int pageSize = 10)
+        public async Task<IActionResult> GetAll([FromQuery] IncidentFilterDto filter)
         {
+            filter.Page = Math.Max(filter.Page, 1);
+            filter.PageSize = Math.Max(filter.PageSize, 1);
+            filter.PageSize = Math.Min(filter.PageSize, 50);
 
-            page = Math.Max(page, 1);
-            pageSize = Math.Min(pageSize, 50);
+            var result = await _service.GetFilteredAsync(filter);   
 
-            var result = await _service.GetPagedAsync(page, pageSize);
             return Ok(result);
         }
     }

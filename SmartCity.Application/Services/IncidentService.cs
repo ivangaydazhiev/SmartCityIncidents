@@ -85,15 +85,15 @@ namespace SmartCity.Application.Services
             return update!.ToDto();
         }
 
-        public async Task<PagedResult<IncidentResponseDto>> GetPagedAsync(int page, int pageSize)
+        public async Task<PagedResult<IncidentResponseDto>> GetFilteredAsync(IncidentFilterDto filter)
         {
-            var (items, totalCount) = await _repository.GetPagedAsync(page, pageSize);
+            var (items, totalCount) = await _repository.GetFilteredAsync(filter);
 
             return new PagedResult<IncidentResponseDto>
             {
                 Items = items.Select(i => i.ToDto()),
-                Page = page,
-                PageSize = pageSize,
+                Page = filter.Page,
+                PageSize = filter.PageSize,
                 TotalCount = totalCount
             };
         }

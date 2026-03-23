@@ -1,4 +1,5 @@
-﻿using SmartCity.Domain.Entities;
+﻿using SmartCity.Application.DTOs;
+using SmartCity.Domain.Entities;
 
 namespace SmartCity.Application.Interfaces
 {
@@ -10,7 +11,7 @@ namespace SmartCity.Application.Interfaces
         void Update(Incident incident);
         void Delete(Incident incident);
         Task SaveChangesAsync();
-        Task<(IEnumerable<Incident> Items, int TotalCount)> GetPagedAsync(int page, int pageSize);
+        Task<(IEnumerable<Incident> Items, int TotalCount)> GetFilteredAsync(IncidentFilterDto filter);
 
     }
 }

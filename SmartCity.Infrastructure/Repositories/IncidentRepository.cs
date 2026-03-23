@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using SmartCity.Application.DTOs;
 using SmartCity.Application.Interfaces;
 using SmartCity.Domain.Entities;
 using SmartCity.Infrastructure.Persistence;
@@ -48,17 +49,28 @@ namespace SmartCity.Infrastructure.Repositories
             await _context.SaveChangesAsync();
         }
 
-        public async Task<(IEnumerable<Incident> Items, int TotalCount)> GetPagedAsync(int page, int pageSize)
+
+        public async Task<(IEnumerable<Incident> Items, int TotalCount)> GetFilteredAsync(IncidentFilterDto filter)
         {
             var query = _context.Incidents
                 .Include(i => i.Location)
                 .AsQueryable();
 
+            if (filter.Status.HasValue)
+            {
+                query = query.Where(i => i.Status == filter.Status.Value);
+            }
+
+            if (filter.Type.HasValue)
+            {
+                query = query.Where(i => i.Type == filter.Type.Value);
+            }
+
             var totalCount = await query.CountAsync();
 
             var items = await query
-                .Skip((page - 1) * pageSize)
-                .Take(pageSize)
+                .Skip((filter.Page - 1) * filter.PageSize)
+                .Take(filter.PageSize)
                 .ToListAsync();
 
             return (items, totalCount);

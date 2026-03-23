@@ -9,6 +9,6 @@ namespace SmartCity.Application.Interfaces
         Task<IncidentResponseDto> CreateAsync(CreateIncidentDto dto);
         Task DeleteAsync(Guid id);
         Task<IncidentResponseDto> UpdateAsync(Guid id, UpdateIncidentDto dto);
-        Task<PagedResult<IncidentResponseDto>> GetPagedAsync(int page, int pageSize);
+        Task<PagedResult<IncidentResponseDto>> GetFilteredAsync(IncidentFilterDto filter);
     }
 }
