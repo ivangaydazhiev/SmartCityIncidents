@@ -1,10 +1,12 @@
 ﻿using FluentValidation;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using SmartCity.Application.DTOs;
 using SmartCity.Application.Interfaces;
 
 namespace SmartCity.Api.Controllers
 {
+    [Authorize]
     [ApiController]
     [Route("/api[controller]")]
     public class IncidentsController : ControllerBase
