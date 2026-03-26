@@ -44,11 +44,11 @@ This project follows **Clean Architecture**:
 ### 1. Clone the repository
  
 ```bash
-git clone https://github.com/myname/SmartCityIncidents.git
+git clone https://github.com/ivangaydazhiev/SmartCityIncidents.git
 cd SmartCityIncidents
 ```
 
-### 2.Apply database migrations
+### 2. Apply database migrations
 
 ```bash
 dotnet ef database update --project SmartCity.Infrastructure --startup-project SmartCity.Api
