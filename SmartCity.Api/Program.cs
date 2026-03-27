@@ -28,6 +28,7 @@ builder.Services.AddValidatorsFromAssemblyContaining<CreateIncidentDtoValidator>
 builder.Services.AddDbContext<SmartCityDbContext>(options =>
     options.UseSqlite("Data source=smartcity.db"));
 
+
 var jwtSettings = builder.Configuration.GetSection("Jwt");
 var key = Encoding.UTF8.GetBytes(jwtSettings["Key"]!);
 
@@ -96,13 +97,14 @@ Log.Logger = new LoggerConfiguration()
 builder.Host.UseSerilog();
 
 var app = builder.Build();
+builder.WebHost.UseUrls("http://0.0.0.0:80");
+
 
 // Configure the HTTP request pipeline.
-if (app.Environment.IsDevelopment())
-{
+
     app.UseSwagger();
     app.UseSwaggerUI();
-}
+
 
 app.UseSerilogRequestLogging();
 
