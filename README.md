@@ -2,7 +2,7 @@
 
 A backend REST API for managing city incidents such as fires, traffic accidents, and emergencies.
 
-Built with **.NET 8** using **Clean Architecture principles**.
+Built with **.NET 8** using **Clean Architecture** principles.
 
 ---
 
@@ -37,6 +37,7 @@ This project follows **Clean Architecture**:
 - JWT Authentication
 - Serilog
 - xUnit & Moq
+- Docker
 
 
 ## Getting Started
@@ -67,6 +68,30 @@ https://localhost:7072/swagger
 ```
 
 ---
+
+## Run with Docker
+
+Build the Docker image:
+
+```bash
+docker build -t smartcity-api .
+```
+
+Run the container
+
+```bash
+docker run -d -p 8080:80 smartcity-api
+```
+
+Open in browser:
+
+```
+http://localhost:8080/swagger
+```
+
+
+
+
 
 ## Authentication
 
@@ -119,5 +144,5 @@ Logging is implemented using **Serilog** and includes:
 ## Future Improvements
 
 - Integration tests
-- Docker support
 - Caching (Redis)
+- CI/CD pipeline
