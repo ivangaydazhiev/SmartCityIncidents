@@ -1,26 +1,24 @@
 name: dotnet-ci
 
 on:
-push:
-branches:
-- main
-pull_request:
-branches:
-- main
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
 
 jobs:
-build:
-runs-on: ubuntu-latest
+  build:
+    runs-on: ubuntu-latest
 
+    steps:
+      - uses: actions/checkout@v4
 
-steps:
-  - uses: actions/checkout@v4
+      - uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: 8.0.x
 
-  - uses: actions/setup-dotnet@v4
-    with:
-      dotnet-version: 8.0.x
-
-  - run: dotnet restore
-  - run: dotnet build --no-restore
-  - run: dotnet test --no-build --verbosity normal
-
+      - run: dotnet restore
+      - run: dotnet build --no-restore
+      - run: dotnet test --no-build --verbosity normal
