@@ -1,5 +1,7 @@
 ﻿# Smart City Incident Management System
 
+![CI](https://github.com/ivangaydazhiev/SmartCityIncidents/actions/workflows/ci.yml/badge.svg)
+
 A backend REST API for managing city incidents such as fires, traffic accidents, and emergencies.
 
 Built with **.NET 8** using **Clean Architecture** principles.
@@ -38,6 +40,7 @@ This project follows **Clean Architecture**:
 - Serilog
 - xUnit & Moq
 - Docker
+- GitHub Actions(CI/CD)
 
 
 ## Getting Started
@@ -77,7 +80,7 @@ Build the Docker image:
 docker build -t smartcity-api .
 ```
 
-Run the container
+Run the container:
 
 ```bash
 docker run -d -p 8080:80 smartcity-api
@@ -106,6 +109,18 @@ Request body:
     "username": "admin",
     "password": "1234"
 }
+```
+
+---
+
+```md
+### Using JWT Token
+
+After login, copy the token and click **Authorize** in Swagger.
+
+Enter:
+
+Bearer YOUR_TOKEN_HERE
 ```
 
 ---
@@ -145,4 +160,4 @@ Logging is implemented using **Serilog** and includes:
 
 - Integration tests
 - Caching (Redis)
-- CI/CD pipeline
+- CI/CD deployment (Azure / Render)
